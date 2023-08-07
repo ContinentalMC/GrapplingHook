@@ -1,0 +1,101 @@
+{
+  "default" : {
+    "displayName" : "§6Standard Grapple",
+    "durability" : 200,
+
+    "stats" : {
+      "range" : 50.0,
+      "hookSpeed" : 3.5,
+      "strengthBlock" : 10.0,
+      "strengthEntity" : 5.0,
+      "pullSpeed" : 1.0,
+      "reloadTime" : 3.0
+    },
+    "canCraft":true,
+    "recipe" : {
+      "shape" : [
+        "a  ",
+        " cr",
+        " rC"
+      ],
+      "key" : {
+        "C":"crossbow",
+        "a":"arrow",
+        "r":"redstone",
+        "c":"chain"
+      }
+    }
+  },
+
+
+  "gripper" : {
+    "displayName" : "§aVery Sticky Grapple",
+    "durability" : 200,
+
+    "stats" : {
+      "range" : 50.0,
+      "hookSpeed": 3.5,
+      "strengthBlock": 20.0,
+      "strengthEntity": 10.0,
+      "pullSpeed" : 0.8,
+      "reloadTime" : 3.0
+    },
+    "canCraft":true,
+    "recipe" : {
+      "shape" : [
+        " s ",
+        "sCs",
+        " s "
+      ],
+      "key" : {
+        "C": "crossbow",
+        "s": "slime_ball"
+      }
+    }
+  },
+
+  "rapid" : {
+    "displayName" : "§cRapidfire Grapple",
+    "durability" : 100,
+
+    "stats" : {
+      "range" : 50.0,
+      "hookSpeed": 6.0,
+      "strengthBlock": 5.0,
+      "strengthEntity": 2.0,
+      "pullSpeed" : 1.5,
+      "reloadTime" : 2.0
+    },
+    "canCraft":true,
+    "recipe" : {
+      "shape" : [
+        "a  ",
+        " cR",
+        " RC"
+      ],
+      "key" : {
+        "C": "crossbow",
+        "a": "arrow",
+        "R": "redstone_block",
+        "c": "chain"
+      }
+    }
+
+  },
+
+
+  "op" : {
+    "displayName" : "§5Over-powered Grapple",
+    "durability" : -1,
+
+    "stats" : {
+      "range" : 150.0,
+      "hookSpeed": 7.0,
+      "strengthBlock": 15.0,
+      "strengthEntity": 10.0,
+      "pullSpeed" : 2.0,
+      "reloadTime" : 0.0
+    },
+    "canCraft":false
+  }
+}
