@@ -126,7 +126,7 @@ public class Preset {
         }
         ItemStack ne = ItemManager.createHook(name);
 
-        ShapedRecipe sr = new ShapedRecipe(NamespacedKey.minecraft("grapple"+name), ne);
+        ShapedRecipe sr = new ShapedRecipe(getNamespacedkey(), ne);
         sr.shape(shape[0],shape[1],shape[2]);
         Set<Character> c2 = craftKey.keySet();
         c2.retainAll(keyVals);
@@ -172,6 +172,9 @@ public class Preset {
     }
     public String getNameKey() {
         return name;
+    }
+    public NamespacedKey getNamespacedkey() {
+        return NamespacedKey.minecraft("grapple"+name);
     }
     public String getDisplayName() {
         return displayName;

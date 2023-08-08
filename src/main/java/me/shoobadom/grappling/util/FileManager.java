@@ -11,20 +11,31 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 public class FileManager {
-    private static double jumpBoost;
-    private static boolean grappleNPCs;
-    private static boolean showStatsDef;
 
-    private static double hookTimeout;
+    private static Grappling instance;
 
-    public static void setup(Grappling instance) {
+    public static void setup(Grappling instance2) {
+        instance=instance2;
+        readConfigs();
+
+
+    }
+    public static void readConfigs() {
         File[] paths = {new File(instance.getDataFolder(),"grapples.json")};
+
         instance.saveDefaultConfig();
+        instance.reloadConfig();
+
+        for (String s : PresetHolder.getPresetList()) {
+            Preset p = PresetHolder.getPreset(s);
+            instance.getServer().removeRecipe(p.getNamespacedkey());
+        }
         for (File p : paths) {
             if (!p.exists()) {
                 instance.saveResource(p.getName(),false);
             }
             if (p.getName().equals("grapples.json")) {
+                PresetHolder.clear();
                 try {
                     FileReader reader = new FileReader(p);
                     JSONParser parser = new JSONParser();
@@ -38,10 +49,19 @@ public class FileManager {
                         PresetHolder.add("default",new Preset("default",new JSONObject()));
                     }
                     for (Object o : jo.keySet()) {
-                        if (((String) o).equalsIgnoreCase("default")){
+                        String s = (String) o;
+                        if (s.equalsIgnoreCase("default")){
                             continue;
                         }
-                        uploadPreset((String) o,jo);
+                        if (PresetHolder.isPreset(s)) {
+                            Grappling.brd("Could not create grapple preset '"+o+"' as it is a duplicate. Preset names are not case-sensitive!");
+                            continue;
+                        }
+                        if (s.split(" ").length != 1) {
+                            Grappling.brd("Could not create grapple preset '"+o+"' as it contains spaces in its name. Preset names must be one word!");
+                            continue;
+                        }
+                        uploadPreset(s,jo);
                     }
                     reader.close();
                 } catch (IOException | ParseException e) {
@@ -50,11 +70,6 @@ public class FileManager {
 
             }
         }
-        jumpBoost = instance.getConfig().getDouble("jumpBoost");
-        grappleNPCs = instance.getConfig().getBoolean("grappleNPCs");
-        hookTimeout= instance.getConfig().getDouble("hookTimeout");
-        showStatsDef = instance.getConfig().getBoolean("showStatsOnDefaultGrapple");
-
     }
 
     private static void uploadPreset(String name, JSONObject obj) {
@@ -67,14 +82,11 @@ public class FileManager {
             PresetHolder.add(name,preset);
         }
     }
-    public static double getJumpBoost() {
-        return jumpBoost;
+
+    public static double getDouble(String s) {
+        return instance.getConfig().getDouble(s);
     }
-    public static boolean getGrappleNPCs() {
-        return grappleNPCs;
+    public static boolean getBool(String s) {
+        return instance.getConfig().getBoolean(s);
     }
-    public static boolean getShowStatsDefaultGrapple() {
-        return showStatsDef;
-    }
-    public static double getHookTimeout() {return hookTimeout;}
 }

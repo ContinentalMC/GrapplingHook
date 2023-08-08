@@ -4,6 +4,7 @@ package me.shoobadom.grappling.commands;
 import me.shoobadom.grappling.Grappling;
 import me.shoobadom.grappling.items.ItemManager;
 import me.shoobadom.grappling.presets.PresetHolder;
+import me.shoobadom.grappling.util.FileManager;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.chat.hover.content.Text;
@@ -47,13 +48,18 @@ public class GrappleCommand implements CommandExecutor {
                     sender.sendMessage(mp("/grapple info","""
                             Description: Details information about the plugin such as which presets have been detected.
                             Usage: /grapple info"""));
+                } else if (a[1].equalsIgnoreCase("reloadconfig")) {
+                    sender.sendMessage(mp("/grapple reloadconfig","""
+                            Description: Reloads the configuration, including the grappling hook presets (grapples.json)
+                            Usage: /grapple reloadconfig"""));
                 } else if (a[1].equalsIgnoreCase("help")) {
-                    sender.sendMessage(mp("/grapple help","""
+                        sender.sendMessage(mp("/grapple help","""
                             Description: Provides help for the user.
                             Usage: /grapple help <command>"""));
                 } else {
-                    sender.sendMessage(ChatColor.RED+"There is no help for that command as it does not exist!");
+                        sender.sendMessage(ChatColor.RED+"There is no help for that command as it does not exist!");
                 }
+
             } else {
                 sender.sendMessage(mp("""
                                 The following is a list of all commands. Use '/gh help <command>' to find out more.
@@ -62,6 +68,7 @@ public class GrappleCommand implements CommandExecutor {
                                         - help
                                         - give
                                         - info
+                                        - reloadconfig
                                         For help with using grappling hook, type 'gh help controls'.
                                         """));
             }
@@ -100,6 +107,11 @@ public class GrappleCommand implements CommandExecutor {
             sender.spigot().sendMessage(build);
             return true;
         }
+        if (a[0].equalsIgnoreCase("reloadconfig")) {
+            FileManager.readConfigs();
+            sender.sendMessage(ChatColor.AQUA + "Reloaded configs.");
+            return true;
+        }
 
         if (a[0].equalsIgnoreCase("give")) {
             if (!( sender instanceof Player p)) {
@@ -108,6 +120,7 @@ public class GrappleCommand implements CommandExecutor {
             }
             if (a.length==1) {
                 p.getInventory().addItem(ItemManager.createHook());
+                p.sendMessage(ChatColor.AQUA + "You have been given a grapple.");
                 return true;
             } else {
                 ItemStack item;

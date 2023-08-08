@@ -61,7 +61,7 @@ public class ItemManager {
 
         itemFinal.setItemMeta(meta);
 
-
+        updateHookDetails(itemFinal);
         return itemFinal;
     }
 
@@ -97,7 +97,7 @@ public class ItemManager {
         }
 
 
-        if (FileManager.getShowStatsDefaultGrapple()|| !pr.equalsIgnoreCase("default")) {
+        if (FileManager.getBool("showStatsOnDefaultGrapple")|| !pr.equalsIgnoreCase("default")) {
             if (meta.getEnchants().keySet().size() != 0) {lore.add("");}
 
             lore.add("§7Rope length: " + ShoobUtils.formatDouble(p.getRange(item))+"m");//itemNBT.getDouble("range")) + "m");

@@ -121,11 +121,6 @@ public class Tick {
                 PlayerGrapple pg = getPG(p);
                 if (pg != null) {
                     pg.incrementShootTimer();
-
-                    if (pg.didPJustShoot()) {
-                        pg.removePJustShot();
-                    }
-
                 }
             }
         },0L,1L);

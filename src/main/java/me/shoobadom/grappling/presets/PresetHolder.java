@@ -26,5 +26,8 @@ public class PresetHolder {
     public static Set<String> getPresetList() {
         return hash.keySet();
     }
+    public static void clear() {
+        hash.clear();
+    }
 
 }

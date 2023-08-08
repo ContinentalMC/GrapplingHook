@@ -8,6 +8,7 @@ import me.shoobadom.grappling.items.ItemManager;
 import me.shoobadom.grappling.presets.PresetHolder;
 import me.shoobadom.grappling.scheduler.EnchantQueueItem;
 import me.shoobadom.grappling.scheduler.Tick;
+import me.shoobadom.grappling.util.FileManager;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -73,11 +74,10 @@ public class Events implements Listener {
 
             // Players must left-click air or blocks if grapple is in main hand
             // Players must right-click air if grapple is in offhand (otherwise they may shoot the grapple when placing blocks)
-            PlayerGrapple pg = Tick.getPG(p);
+
             Boolean mainHand = null;
             if (itemMainHand.getType() != Material.AIR && (action == Action.LEFT_CLICK_AIR || action == Action.LEFT_CLICK_BLOCK)) {
                 mainHand = true;
-
             } else if (itemOffHand.getType() != Material.AIR && (action == Action.RIGHT_CLICK_AIR || action == Action.RIGHT_CLICK_BLOCK)) { // no right clicking block. you may be placing or interacting with something
 
                 // If you hold any item and right click, it registers an event
@@ -89,9 +89,13 @@ public class Events implements Listener {
                 }
 
             }
-            if (mainHand == null) {
+
+            if (mainHand==null || (mainHand && !ItemManager.isGrapple(p.getInventory().getItemInMainHand()))
+                    || (!mainHand && !ItemManager.isGrapple(p.getInventory().getItemInOffHand()))) {
                 return;
             }
+            PlayerGrapple pg = Tick.getPG(p);
+
             if (pg == null) {
                 new PlayerGrapple(p,mainHand);
             } else {
@@ -322,6 +326,9 @@ public class Events implements Listener {
 
     @EventHandler
     public void playerPutInEnchant(PrepareItemEnchantEvent e) {
+        if (!FileManager.getBool("canEnchantGrapples")) {
+            return;
+        }
         ItemStack it = e.getItem();
         if (!ItemManager.isGrapple(it)) {
             return;

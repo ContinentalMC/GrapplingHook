@@ -39,7 +39,11 @@ public final class Grappling extends JavaPlugin {
         logger.warning("["+instance.getName()+"] "+s);
     }
     public static void addRecipe(ShapedRecipe sr) {
-        instance.getServer().addRecipe(sr);
+
+        if (instance.getServer().getRecipe(sr.getKey())== null) {
+            instance.getServer().addRecipe(sr);
+        }
+
     }
     public static Grappling getInstance() {
         return instance;

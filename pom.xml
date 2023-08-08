@@ -6,7 +6,7 @@
 
     <groupId>me.shoobadom.grappling</groupId>
     <artifactId>Grappling</artifactId>
-    <version>Snapshot-1.0-rc3.0</version>
+    <version>Snapshot-1.0-rc3.1</version>
     <packaging>jar</packaging>
 
     <name>ShoobadomGrapplingHooks</name>

@@ -11,8 +11,10 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -25,8 +27,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PlayerGrapple {
-    private int waitTime = (int)(20*FileManager.getHookTimeout());
-    private final double jumpBoost= FileManager.getJumpBoost();
+    private int waitTime = (int)(20*FileManager.getDouble("hookTimeout"));
+    private final double jumpBoost= FileManager.getDouble("jumpBoost");
     private static final Double batAddLocY = 0.9;
 
     private Arrow hook;
@@ -49,7 +51,7 @@ public class PlayerGrapple {
 
     private int ogSlot;
     private BukkitTask runner;
-    private final boolean grappleNPCs = FileManager.getGrappleNPCs();
+    private final boolean grappleNPCs = FileManager.getBool("grappleNPCs");
     private boolean takeDur=false;
     private ItemStack ghItem;
 
@@ -62,6 +64,10 @@ public class PlayerGrapple {
         } else {
             ghItem = p.getInventory().getItemInOffHand();
             ogSlot=40;
+        }
+        if (!ItemManager.isGrapple(ghItem)) {
+            Grappling.brd("returning");
+            return;
         }
 
 
@@ -121,12 +127,7 @@ public class PlayerGrapple {
         bat.setMetadata(grappleMetaDataString, new FixedMetadataValue(plugin, "o.o"));
         return bat;
     }
-    public boolean didPJustShoot() {
-        return pJustShot;
-    }
-    public void removePJustShot() {
-        pJustShot=false;
-    }
+
 
     private List<EntityType> permittedEntities = Arrays.asList(
             EntityType.BOAT,
@@ -175,7 +176,12 @@ public class PlayerGrapple {
         double pBatAdd = particle.getHeight()*0.5;
         double aBatAdd = anchor.getHeight()*0.5;
 
-        takeDur=p.getGameMode()!= GameMode.CREATIVE;
+
+        ItemMeta im = ghItem.getItemMeta();
+        assert im != null;
+        int unbrLvl = im.getEnchantLevel(Enchantment.DURABILITY);
+        takeDur=p.getGameMode()!= GameMode.CREATIVE && (int) (Math.random()*(unbrLvl+1)) ==0;
+
 
         runner =new BukkitRunnable() {
             int counter=0;
@@ -360,6 +366,7 @@ public class PlayerGrapple {
         if (runner!=null) {
             return;
         }
+        pJustShot=false;
         waitTime-=1;
         if (waitTime == 0) {
             terminateGrapple();

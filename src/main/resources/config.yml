@@ -2,3 +2,4 @@ jumpBoost: 1.0
 showStatsOnDefaultGrapple: false
 grappleNPCs: false
 hookTimeout: 10.0
+canEnchantGrapples: true
