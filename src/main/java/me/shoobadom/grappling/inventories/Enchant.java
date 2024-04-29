@@ -1,9 +1,7 @@
 package me.shoobadom.grappling.inventories;
 
 import de.tr7zw.nbtapi.NBTItem;
-import me.shoobadom.grappling.items.CustomEnchants;
 import me.shoobadom.grappling.items.ItemManager;
-import me.shoobadom.grappling.scheduler.EnchantQueueItem;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentOffer;
@@ -41,9 +39,6 @@ public class Enchant implements InventoryHolder {
 
         // need to define three offers based on the levels etc
 
-        listOf.put(CustomEnchants.PROJECTION,3);
-        listOf.put(CustomEnchants.GRIP,3);
-        listOf.put(CustomEnchants.RETRACTION,3);
         listOf.put(Enchantment.DURABILITY,2);
         cumEn=0; //total enchantment placement
         for (Enchantment key : listOf.keySet()) {
