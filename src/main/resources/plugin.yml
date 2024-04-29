@@ -1,0 +1,11 @@
+name: '${project.name}'
+version: '${project.version}'
+main: me.shoobadom.grappling.Grappling
+api-version: '1.20'
+authors: [ Shoobadom ]
+description: Adds grappling hooks
+commands:
+  grapple:
+    description: Use /grapple help for information
+    usage: /<command>
+    aliases: [gh, grpl]
