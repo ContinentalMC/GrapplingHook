@@ -53,7 +53,7 @@ public class ItemManager {
         meta.setCustomModelData(383595);
 
 
-        meta.addEnchant(Enchantment.QUICK_CHARGE, 6, true);
+        meta.addEnchant(Enchantment.QUICK_CHARGE, 1, true);
 
         meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES,ItemFlag.HIDE_ENCHANTS);
 
@@ -93,23 +93,6 @@ public class ItemManager {
 
             }
         }
-
-
-        if (FileManager.getBool("showStatsOnDefaultGrapple")|| !pr.equalsIgnoreCase("default")) {
-            if (meta.getEnchants().keySet().size() != 0) {lore.add("");}
-
-            lore.add("§7Rope length: " + ShoobUtils.formatDouble(p.getRange(item))+"m");//itemNBT.getDouble("range")) + "m");
-            lore.add("§7Projectile speed: " + ShoobUtils.formatDouble(p.getHookSpeed(item)));
-
-            lore.add("§7Strength (blocks): " + ShoobUtils.formatDouble(p.getStrengthBlock(item)) + "s");
-            lore.add("§7Strength (entities): " + ShoobUtils.formatDouble(p.getStrengthEntity(item)) + "s");
-
-            lore.add("§7Pull speed: " + ShoobUtils.formatDouble(p.getPullSpeed(item)));
-            lore.add("§7Reload time: " + ShoobUtils.formatDouble(p.getReloadTime(item)) + "s");
-        }
-
-
-
 
         meta.setLore(lore);
         item.setItemMeta(meta);
