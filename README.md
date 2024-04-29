@@ -1,4 +1,4 @@
-## CMC Grappling Plugin
+## CMC Grappling Hook Plugin
 ### a fork of Shadabooms Grappling Hooks
 #### Plugin for Spigot 1.20.*
 (a fork for the latest version compatibility + New features! Made for ContinentalMC)
