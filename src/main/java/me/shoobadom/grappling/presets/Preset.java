@@ -2,7 +2,6 @@ package me.shoobadom.grappling.presets;
 
 
 import me.shoobadom.grappling.Grappling;
-import me.shoobadom.grappling.items.CustomEnchants;
 import me.shoobadom.grappling.items.ItemManager;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -187,57 +186,26 @@ public class Preset {
     public double getRange() {
         return range;
     }
-    public double getRange(ItemStack item) {
-        ItemMeta meta = item.getItemMeta();
-        assert meta != null;
-        return Math.max(0,range) * (1+(meta.getEnchantLevel(CustomEnchants.PROJECTION) * 0.5));
-    }
 
     public double getHookSpeed() {
         return hookSpeed;
-    }
-    public double getHookSpeed(ItemStack item) {
-        ItemMeta meta = item.getItemMeta();
-        assert meta != null;
-        return Math.max(0,hookSpeed) * (1+(meta.getEnchantLevel(CustomEnchants.PROJECTION) * 0.2));
     }
 
 
     public double getStrengthBlock() {
         return strengthBlock;
     }
-    public double getStrengthBlock(ItemStack item) {
-        ItemMeta meta = item.getItemMeta();
-        assert meta != null;
-        return Math.max(0,strengthBlock) * (1+(meta.getEnchantLevel(CustomEnchants.GRIP) * 0.4));
-    }
 
     public double getStrengthEntity() {
         return strengthEntity;
-    }
-    public double getStrengthEntity(ItemStack item) {
-        ItemMeta meta = item.getItemMeta();
-        assert meta != null;
-        return Math.max(0,strengthEntity) * (1+(meta.getEnchantLevel(CustomEnchants.GRIP) * 0.4));
     }
 
     public double getPullSpeed() {
         return pullSpeed;
     }
-    public double getPullSpeed(ItemStack item) {
-        ItemMeta meta = item.getItemMeta();
-        assert meta != null;
-        return Math.max(0,pullSpeed) * (1+(meta.getEnchantLevel(CustomEnchants.RETRACTION) * 0.1));
-    }
 
     public double getReloadTime() {
         return reloadTime;
-    }
-
-    public double getReloadTime(ItemStack item) {
-        ItemMeta meta = item.getItemMeta();
-        assert meta != null;
-        return Math.max(0,reloadTime) * (1-(meta.getEnchantLevel(CustomEnchants.RETRACTION) * 0.2));
     }
 
     public boolean isCanCraft() {
