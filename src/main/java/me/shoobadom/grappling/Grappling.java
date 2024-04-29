@@ -2,7 +2,6 @@ package me.shoobadom.grappling;
 
 import me.shoobadom.grappling.commands.GrappleCommand;
 import me.shoobadom.grappling.events.Events;
-import me.shoobadom.grappling.items.CustomEnchants;
 import me.shoobadom.grappling.scheduler.Tick;
 import me.shoobadom.grappling.util.FileManager;
 import org.bstats.bukkit.Metrics;
