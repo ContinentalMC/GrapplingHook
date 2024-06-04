@@ -21,8 +21,6 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
-
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
