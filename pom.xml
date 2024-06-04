@@ -9,7 +9,7 @@
     <version>0.2</version>
     <packaging>jar</packaging>
 
-    <name>Grappling-0.2</name>
+    <name>GrapplingHooks</name>
 
     <properties>
         <java.version>21</java.version>
@@ -86,13 +86,6 @@
             <artifactId>spigot-api</artifactId>
             <version>1.20.6-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
-        </dependency>
-        <!-- bStats -->
-        <dependency>
-            <groupId>org.bstats</groupId>
-            <artifactId>bstats-bukkit</artifactId>
-            <version>3.0.2</version>
-            <scope>compile</scope>
         </dependency>
         <!-- NBTAPI -->
         <dependency>
