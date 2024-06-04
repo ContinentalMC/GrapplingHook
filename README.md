@@ -25,4 +25,4 @@ Please see the [Spigot page](https://www.spigotmc.org/resources/shoobadoms-grapp
   
 You can donate to the original author, Shoobadom [here](https://www.paypal.com/donate/?hosted_button_id=RW6MXPQRV25H4) - go support them for starting this amazing plugin!
 
-**By using this software you agree that ContinentalMC or any Author(s) are not to be held liable for any potential damages while using this plugin, the software and any/all related code is provided AS-IS**
+**By using this software you agree that ContinentalMC or any Author(s) are not to be held liable for any potential damages while, after, or before the software's use. The software and any/all related code is provided AS-IS**
