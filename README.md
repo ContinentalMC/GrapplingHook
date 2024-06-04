@@ -5,7 +5,7 @@
   
 
 
-#### Grapple Model Data
+#### Grappling Hook Model Data (Default)
 CustomModelData: 383595
 
 
@@ -13,15 +13,13 @@ CustomModelData: 383595
 - Removal of custom enchants
 - Requires [NBTAPI](https://modrinth.com/plugin/nbtapi/versions) seperately
 - Requires Java 21
+- Supports 1.20.5+
 
 
 
 # How to build
 run
 `mvn install`
-### Windows
-Built jar will appear in C:\Users\{User}\{Project}\GrapplingHook\target\
-
 
 Please see the [Spigot page](https://www.spigotmc.org/resources/shoobadoms-grappling-hooks.106229/) for the original author
   
