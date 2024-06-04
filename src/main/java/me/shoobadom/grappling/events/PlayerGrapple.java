@@ -179,7 +179,7 @@ public class PlayerGrapple {
 
         ItemMeta im = ghItem.getItemMeta();
         assert im != null;
-        int unbrLvl = im.getEnchantLevel(Enchantment.DURABILITY);
+        int unbrLvl = im.getEnchantLevel(Enchantment.UNBREAKING);
         takeDur=p.getGameMode()!= GameMode.CREATIVE && (int) (Math.random()*(unbrLvl+1)) ==0;
 
 
