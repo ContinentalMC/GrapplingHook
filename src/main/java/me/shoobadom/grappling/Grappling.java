@@ -4,7 +4,6 @@ import me.shoobadom.grappling.commands.GrappleCommand;
 import me.shoobadom.grappling.events.Events;
 import me.shoobadom.grappling.scheduler.Tick;
 import me.shoobadom.grappling.util.FileManager;
-import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
