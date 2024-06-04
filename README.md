@@ -26,3 +26,5 @@ Built jar will appear in C:\Users\{User}\{Project}\GrapplingHook\target\
 Please see the [Spigot page](https://www.spigotmc.org/resources/shoobadoms-grappling-hooks.106229/) for the original author
   
 You can donate to the original author, Shoobadom [here](https://www.paypal.com/donate/?hosted_button_id=RW6MXPQRV25H4) - go support them for starting this amazing plugin!
+
+**By using this software you agree that ContinentalMC or any Author(s) are not to be held liable for any potential damages while using this plugin, the software and any/all related code is provided AS-IS**
