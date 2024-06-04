@@ -9,7 +9,7 @@
     <version>0.2</version>
     <packaging>jar</packaging>
 
-    <name>ShoobadomGrapplingHooks</name>
+    <name>Grappling-0.2</name>
 
     <properties>
         <java.version>21</java.version>
@@ -33,10 +33,6 @@
                 <version>3.6.0</version>
                 <configuration>
                     <relocations>
-                        <relocation>
-                            <pattern>org.bstats</pattern>
-                            <shadedPattern>me.shoobadom.grappling.util</shadedPattern>
-                        </relocation>
                         <relocation>
                             <pattern>de.tr7zw</pattern>
                             <shadedPattern>me.shoobadom.grappling.util.nbt</shadedPattern>

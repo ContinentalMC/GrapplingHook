@@ -25,7 +25,6 @@ public final class Grappling extends JavaPlugin {
 
         FileManager.setup(this);
         getServer().getPluginManager().registerEvents(new Events(),this);
-        Metrics metrics = new Metrics(this,18381);
         Tick.enableTick();
         GrappleCommand cmd = new GrappleCommand();
         getCommand("grapple").setExecutor(cmd);
