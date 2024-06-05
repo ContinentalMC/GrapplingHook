@@ -11,7 +11,7 @@ CustomModelData: 383595
 
 # Differences from the original plugin
 - Removal of custom enchants
-- Requires [NBTAPI](https://modrinth.com/plugin/nbtapi/versions) seperately
+- Requires [NBTAPI](https://modrinth.com/plugin/nbtapi/versions) separately
 - Requires Java 21
 - Supports 1.20.5+
 
