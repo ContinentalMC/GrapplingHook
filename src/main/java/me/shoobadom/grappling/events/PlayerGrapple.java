@@ -106,7 +106,6 @@ public class PlayerGrapple {
         hook.setMetadata(grappleMetaDataString,new FixedMetadataValue(plugin,"-_-"));
 
         pb = summonBat(p);
-        pb.setLeashHolder(hook);
 
 
         p.getWorld().playSound(p.getEyeLocation(), Sound.ITEM_CROSSBOW_SHOOT, 0.5F, 1.4F);

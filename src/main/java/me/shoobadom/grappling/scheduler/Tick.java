@@ -18,13 +18,6 @@ import java.util.UUID;
 public class Tick {
     private final static HashMap<UUID, PlayerGrapple> playerMapple= new HashMap<>();
     private static final Grappling plugin = Grappling.getInstance();
-
-
-    private final static HashMap<UUID,EnchantQueueItem> playerEnchant = new HashMap<>();
-    public static void playerEnchantSwitch(EnchantQueueItem eqi) {
-        playerEnchant.put(eqi.getPlayer().getUniqueId(),eqi);
-
-    }
     private final static HashSet<UUID> checkLapis = new HashSet<>();
     public static void addLapisCheck(Player p) {checkLapis.add(p.getUniqueId());}
     public static void enableTick() {
@@ -64,7 +57,6 @@ public class Tick {
                 }
 
                 checkLapis.clear();
-                playerEnchant.clear();
 
 
                 PlayerGrapple pg = getPG(p);

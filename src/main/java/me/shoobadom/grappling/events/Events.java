@@ -1,12 +1,8 @@
 package me.shoobadom.grappling.events;
 
-import de.tr7zw.nbtapi.NBTItem;
 import me.shoobadom.grappling.Grappling;
 import me.shoobadom.grappling.items.ItemManager;
-import me.shoobadom.grappling.presets.PresetHolder;
-import me.shoobadom.grappling.scheduler.EnchantQueueItem;
 import me.shoobadom.grappling.scheduler.Tick;
-import me.shoobadom.grappling.util.FileManager;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Arrow;
@@ -18,13 +14,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDamageEvent;
-import org.bukkit.event.enchantment.PrepareItemEnchantEvent;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.Damageable;
-import java.util.Objects;
 
 public class Events implements Listener {
     @EventHandler
@@ -235,49 +228,6 @@ public class Events implements Listener {
             pg.swapHands();
         }
     }
-
-    @EventHandler
-    public void playerPutInEnchant(PrepareItemEnchantEvent e) {
-        if (!FileManager.getBool("canEnchantGrapples")) {
-            return;
-        }
-        ItemStack it = e.getItem();
-        if (!ItemManager.isGrapple(it)) {
-            return;
-        }
-        if (Objects.requireNonNull(it.getItemMeta()).getEnchants().keySet().size() >1) { // it is enchanted already
-            return;
-        }
-        int[] offers = {0,0,0};
-        for (int y=0;y<e.getOffers().length;y++) {
-            if (e.getOffers()[y]!=null) {
-                offers[y] = e.getOffers()[y].getCost();
-            }
-        }
-        Tick.playerEnchantSwitch(new EnchantQueueItem(e.getEnchanter(),e.getEnchantBlock().getLocation(),offers));
-    }
-
-    @EventHandler
-    public void playerMendGrapple(PlayerItemMendEvent e) {
-        ItemStack item = e.getItem();
-        NBTItem gh = new NBTItem(item);
-        if (!ItemManager.isGrapple(gh)) {
-            return;
-        }
-
-        int xp = e.getExperienceOrb().getExperience();
-        int durMax = PresetHolder.getPreset(gh.getString("preset")).getDurability();
-        int dur = Math.max(0,gh.getInteger("durability")-xp*2);
-        // ^^ two durability per point of xp (minecraft.fandom.com/wiki/Mending)
-        gh.setInteger("durability",dur);
-        item = gh.getItem();
-        org.bukkit.inventory.meta.Damageable itemDamage = (Damageable) item.getItemMeta();
-        itemDamage.setDamage((int) ( ((double) Material.CROSSBOW.getMaxDurability() * dur)/durMax) );
-        item.setItemMeta(itemDamage);
-        e.getPlayer().getInventory().setItem(e.getSlot(),item);
-    }
-
-
 
 
 }
